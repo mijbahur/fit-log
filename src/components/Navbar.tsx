@@ -7,7 +7,7 @@ const Navbar = () => {
     const links = (
         <>
             <li>
-                <Link href="./workouts">Workouts</Link>
+                <Link href="./workout">Workouts</Link>
             </li>
             <li>
                 <Link href="./my-plan">My Plan</Link>
@@ -15,7 +15,7 @@ const Navbar = () => {
         </>
     );
     return (
-        <nav className="bg-base-100 border-b border-base-300">
+        <nav className="bg-black border-b border-base-300">
             <div className="navbar container mx-auto px-4 ">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -48,8 +48,8 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <div className="flex items-center gap-1">
-                        <Image src={logo} alt="Logo" width={32} height={32} />
+                    <div className="flex items-center">
+                        <Image src={logo} alt="Logo" width={24} height={24} />
 
                         <Link href="./" className="btn btn-ghost text-xl">
                             FITLOG
