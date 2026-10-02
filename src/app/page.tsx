@@ -1,7 +1,13 @@
+import Library from '../components/Library';
 import Hero from '../components/Hero';
 
 const HomePage = () => {
-  return <Hero />;
+  return (
+    <>
+      <Hero />
+      <Library />
+    </>
+  );
 };
 
 export default HomePage;

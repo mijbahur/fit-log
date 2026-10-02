@@ -30,7 +30,7 @@ export default function Hero() {
 
                 <div className="relative min-h-60 sm:min-h-72 lg:min-h-full">
                     <Image
-                        src="/banner.png"
+                        src={banner}
                         alt="Workout machine illustration"
                         fill
                         priority
