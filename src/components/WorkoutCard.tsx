@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
-import type { Workout } from "@/src/types/workout";
+import type { IWorkout } from "@/src/types/workout.type";
 import { Clock, Flame, Star } from "lucide-react";
 import Image from "next/image";
 
@@ -12,7 +12,7 @@ export function Pill({ children }: { children: ReactNode }) {
     );
 }
 
-export function Stats({ w }: { w: Workout }) {
+export function Stats({ w }: { w: IWorkout }) {
     return (
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted">
             <span className="flex items-center gap-1">
@@ -31,10 +31,10 @@ export function Stats({ w }: { w: Workout }) {
     );
 }
 
-export default function WorkoutCard({ workout: w }: { workout: Workout }) {
+export default function WorkoutCard({ workout: w }: { workout: IWorkout }) {
     return (
         <Link
-            href={`/workouts/${w.id}`}
+            href={`/workout/${w.id}`}
             className="group flex flex-col overflow-hidden rounded-xl border border-line bg-surface transition hover:-translate-y-1 hover:border-accent/60"
         >
             <div className="aspect-[4/3] overflow-hidden bg-surface-2">

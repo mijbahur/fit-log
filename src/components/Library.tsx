@@ -1,6 +1,6 @@
 import React from "react";
 import WorkoutCard from "./WorkoutCard";
-import { Workout } from "../types/workout";
+import { IWorkout } from "../types/workout.type";
 
 const getWorkouts = async () => {
     const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -9,7 +9,6 @@ const getWorkouts = async () => {
 
 const Library = async () => {
     const workouts = await getWorkouts();
-    console.log("Workouts:", workouts);
 
     return (
         <section
@@ -25,7 +24,7 @@ const Library = async () => {
                 </p>
             </div>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-6">
-                {workouts.map((workout: Workout, index: number) => {
+                {workouts.map((workout: IWorkout, index: number) => {
                     return <WorkoutCard key={index} workout={workout} />;
                 })}
             </div>
