@@ -11,20 +11,34 @@ interface WorkoutDetailPageProps {
     params: Promise<{ id: string }>;
 }
 
-const getWorkouts = async () => {
-    const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
-    return await res.json();
+const getWorkout = async (id: number): Promise<Omit<IWorkout, "id"> | null> => {
+    const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+
+    if (res.status === 404) {
+        return null;
+    }
+
+    if (!res.ok) {
+        throw new Error(`Failed to fetch workout ${id}: ${res.status} ${res.statusText}`);
+    }
+
+    return res.json();
 };
 
 
 const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
     const { id } = await params;
-    const workouts = await getWorkouts();
-    const workout = workouts.find((w: IWorkout) => Number(w.id) === Number(id));
+    const workoutId = Number(id);
 
-    if (!workout) {
+    if (!Number.isSafeInteger(workoutId) || workoutId < 1) {
         notFound();
     }
+
+    const workoutData = await getWorkout(workoutId);
+    if (!workoutData) {
+        notFound();
+    }
+    const workout: IWorkout = { ...workoutData, id: workoutId };
 
     const specs: [string, string | number][] = [
     ["Equipment", workout.equipment],
