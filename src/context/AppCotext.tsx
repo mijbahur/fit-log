@@ -1,21 +1,39 @@
 "use client";
 
-import React, { createContext, ReactNode, useState } from 'react';
+import React, { createContext, ReactNode, useState } from "react";
 
+import { IWorkout } from "@/src/types/workout.type";
 
-export const AppContext = createContext({});
+interface AppContextType {
+    addTodayWorkout: IWorkout[];
+    setAddTodayWorkout: React.Dispatch<React.SetStateAction<IWorkout[]>>;
+    savedWorkouts: IWorkout[];
+    setSavedWorkouts: React.Dispatch<React.SetStateAction<IWorkout[]>>;
+}
 
-const AppProvider = ({ children }: {children: ReactNode}) => {
-    const [addTodayWorkout, setAddTodayWorkout] = useState([]);
-    const [savedWorkouts, setSavedWorkouts] = useState([]);
+export const AppContext = createContext<AppContextType>({
+    addTodayWorkout: [],
+    setAddTodayWorkout: () => {},
+    savedWorkouts: [],
+    setSavedWorkouts: () => {},
+});
 
-    const sharedData = {
-        addTodayWorkout,
-        setAddTodayWorkout,
-        savedWorkouts,
-        setSavedWorkouts
-    };
-    return <AppContext.Provider value={sharedData}> {children} </AppContext.Provider>;
-}; 
+const AppProvider = ({ children }: { children: ReactNode }) => {
+    const [addTodayWorkout, setAddTodayWorkout] = useState<IWorkout[]>([]);
+    const [savedWorkouts, setSavedWorkouts] = useState<IWorkout[]>([]);
 
-export default AppProvider; 
+    return (
+        <AppContext.Provider
+            value={{
+                addTodayWorkout,
+                setAddTodayWorkout,
+                savedWorkouts,
+                setSavedWorkouts,
+            }}
+        >
+            {children}
+        </AppContext.Provider>
+    );
+};
+
+export default AppProvider;

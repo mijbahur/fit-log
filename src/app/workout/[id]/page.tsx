@@ -117,7 +117,7 @@ const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
 
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                         <AddToTodaysPlanButton workout={workout} />
-                        <SaveWorkoutButton />
+                        <SaveWorkoutButton workout={workout} />
                     </div>
                 </div>
             </div>
