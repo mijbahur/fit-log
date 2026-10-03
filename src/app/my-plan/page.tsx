@@ -30,8 +30,9 @@ const MyPlanPage = () => {
         return () => clearTimeout(t);
     }, []);
 
-    const totalMinutes = addTodayWorkout.reduce((s: number, w: IWorkout) => s + num(w.duration), 0);
-    const totalCalories = addTodayWorkout.reduce((s: number, w: IWorkout) => s + num(w.caloriesBurned), 0);
+    const activeWorkouts = tab === "today" ? addTodayWorkout : savedWorkouts;
+    const totalMinutes = activeWorkouts.reduce((s: number, w: IWorkout) => s + num(w.duration), 0);
+    const totalCalories = activeWorkouts.reduce((s: number, w: IWorkout) => s + num(w.caloriesBurned), 0);
 
     const list: IWorkout[] = useMemo(() => {
         const base = tab === "today" ? addTodayWorkout : savedWorkouts;
@@ -59,7 +60,7 @@ const MyPlanPage = () => {
             {/* Metrics */}
             <div className="mt-6 grid grid-cols-3 w-full rounded-xl border border-white/40 bg-[#13161D]">
                 {[
-                    { label: "Exercises", value: addTodayWorkout.length, color: true ? "text-[#C2F800]" : "text-white" },
+                    { label: "Exercises", value: activeWorkouts.length, color: "text-[#C2F800]" },
                     { label: "Minutes", value: totalMinutes },
                     { label: "Calories", value: totalCalories },
                 ].map((m) => (
