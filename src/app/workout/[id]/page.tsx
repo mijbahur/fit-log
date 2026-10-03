@@ -4,6 +4,7 @@ import { IWorkout } from "@/src/types/workout.type";
 import { ArrowLeft} from "lucide-react";
 
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import React from "react";
 
 interface WorkoutDetailPageProps {
@@ -22,18 +23,7 @@ const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
     const workout = workouts.find((w: IWorkout) => Number(w.id) === Number(id));
 
     if (!workout) {
-        return (
-            <section className="container mx-auto max-w-7xl px-4 py-8">
-                <h1 className="text-2xl font-bold">Workout not found</h1>
-
-                <Link
-                    href="/"
-                    className="mt-4 inline-block text-accent"
-                >
-                    Back to library
-                </Link>
-            </section>
-        );
+        notFound();
     }
 
     const specs: [string, string | number][] = [

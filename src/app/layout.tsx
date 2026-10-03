@@ -33,7 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <AppProvider>
                     <Navbar />
 
-                    {children}
+                    <main className="flex-1">
+                        {children}
+                    </main>
 
                     <Footer />
                     <ToastContainer />

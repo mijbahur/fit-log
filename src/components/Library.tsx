@@ -13,7 +13,7 @@ const Library = async () => {
     return (
         <section
             id="library"
-            className="px-2 pt-2 sm:px-3 sm:pt-3 rounded-xl mt-6"
+            className="container mx-auto max-w-10xl px-2 pt-2 sm:px-3 sm:pt-3 rounded-xl mt-6"
         >
             <div>
                 <h3 className="font-display text-sm font-bold uppercase leading-[1.05] sm:text-4xl lg:text-4xl">
