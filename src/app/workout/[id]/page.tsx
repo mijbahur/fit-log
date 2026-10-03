@@ -60,7 +60,7 @@ const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
                     <img
                         src={workout.image}
                         alt={workout.name}
-                        className="aspect-square w-full rounded-2xl border border-line bg-surface-2 object-cover"
+                        className="aspect-square w-full rounded-2xl border border-white/60 bg-surface-2 object-cover"
                     />
                 </div>
 
@@ -79,7 +79,7 @@ const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
                         ))}
                     </div>
                     
-                    <dl className="mt-3 divide-y divide-line rounded-xl border border-line bg-surface">
+                    <dl className="mt-3 divide-y divide-white/30 rounded-xl border border-white/40 bg-surface">
                         {specs.map(([k, v]) => (
                             <div
                                 key={k}
