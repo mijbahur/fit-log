@@ -5,7 +5,6 @@ import { Check, Clock, Flame, Star, X, ChevronDown } from "lucide-react";
 import { AppContext } from "@/src/context/AppCotext";
 import { IWorkout } from "@/src/types/workout.type";
 
-type Tab = "today" | "saved";
 type SortKey = "Duration" | "Calories" | "Rating";
 
 const num = (v: unknown) => parseFloat(String(v ?? 0)) || 0;
@@ -17,12 +16,14 @@ const MyPlanPage = () => {
         removeTodayWorkout,
         removeSavedWorkout,
         markAsDone,
+        planTab,
+        setPlanTab,
         doneIds = [],
     } = useContext(AppContext);
 
-    const [tab, setTab] = useState<Tab>("today");
     const [sortBy, setSortBy] = useState<SortKey>("Duration");
     const [loading, setLoading] = useState(true);
+    const tab = planTab;
 
     // short "Loading workouts…" state before the list renders
     useEffect(() => {
@@ -42,7 +43,7 @@ const MyPlanPage = () => {
         );
     }, [tab, sortBy, addTodayWorkout, savedWorkouts]);
 
-    const tabClass = (t: Tab) =>
+    const tabClass = (t: "today" | "saved") =>
         `rounded-md px-4 py-1.5 text-sm font-semibold transition ${
             tab === t ? "bg-[#C2F800] text-black" : "text-muted hover:text-white"
         }`;
@@ -78,10 +79,10 @@ const MyPlanPage = () => {
             {/* Tabs + sort */}
             <div className="mt-6 w-full flex items-center justify-between gap-3">
                 <div className="grid grid-cols-2 gap-2 rounded-lg border border-white/40 bg-[#13161D] p-1">
-                    <button className={tabClass("today")} onClick={() => setTab("today")}>
+                    <button className={tabClass("today")} onClick={() => setPlanTab("today")}>
                         Today&apos;s Plan
                     </button>
-                    <button className={tabClass("saved")} onClick={() => setTab("saved")}>
+                    <button className={tabClass("saved")} onClick={() => setPlanTab("saved")}>
                         Saved
                     </button>
                 </div>

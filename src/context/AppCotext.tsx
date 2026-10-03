@@ -5,11 +5,15 @@ import React, { createContext, ReactNode, useState } from "react";
 import { IWorkout } from "@/src/types/workout.type";
 import { toast } from "react-toastify";
 
+export type PlanTab = "today" | "saved";
+
 interface AppContextType {
     addTodayWorkout: IWorkout[];
     addWorkoutToToday: (w: IWorkout) => void;
     savedWorkouts: IWorkout[];
     saveWorkout: (w: IWorkout) => void;
+    planTab: PlanTab;
+    setPlanTab: React.Dispatch<React.SetStateAction<PlanTab>>;
     doneIds: string[];
     removeTodayWorkout: (w: IWorkout) => void;
     removeSavedWorkout: (w: IWorkout) => void;
@@ -21,6 +25,8 @@ export const AppContext = createContext<AppContextType>({
     addWorkoutToToday: () => {},
     savedWorkouts: [],
     saveWorkout: () => {},
+    planTab: "today",
+    setPlanTab: () => {},
     doneIds: [],
     removeTodayWorkout: () => {},
     removeSavedWorkout: () => {},
@@ -30,6 +36,7 @@ export const AppContext = createContext<AppContextType>({
 const AppProvider = ({ children }: { children: ReactNode }) => {
     const [addTodayWorkout, setAddTodayWorkout] = useState<IWorkout[]>([]);
     const [savedWorkouts, setSavedWorkouts] = useState<IWorkout[]>([]);
+    const [planTab, setPlanTab] = useState<PlanTab>("today");
     const [doneIds, setDoneIds] = useState<string[]>([]);
 
     const addWorkoutToToday = (w: IWorkout) => {
@@ -105,6 +112,8 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
                 addWorkoutToToday,
                 savedWorkouts,
                 saveWorkout,
+                planTab,
+                setPlanTab,
                 doneIds,
                 removeTodayWorkout,
                 removeSavedWorkout,

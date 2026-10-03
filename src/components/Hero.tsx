@@ -6,7 +6,7 @@ import banner from "@/public/banner.png";
 export default function Hero() {
     return (
         <section className="px-2 pt-2 sm:px-3 sm:pt-3 rounded-xl mt-6">
-            <div className="grid w-full overflow-hidden rounded-xl bg-[#222630] lg:grid-cols-2">
+            <div className="grid w-full overflow-hidden rounded-xl bg-[#15171D] lg:grid-cols-2">
                 <div className="flex flex-col justify-center px-6 py-12 sm:px-12 lg:px-16 lg:py-20">
                     <p className="mb-4 text-xs font-bold uppercase tracking-[0.3em] text-[#C2F800]">
                         Workout Library
