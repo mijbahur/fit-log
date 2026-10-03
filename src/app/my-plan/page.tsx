@@ -37,7 +37,10 @@ const MyPlanPage = () => {
 
     const list: IWorkout[] = useMemo(() => {
         const base = tab === "today" ? addTodayWorkout : savedWorkouts;
-        const key = sortBy.toLowerCase() as "duration" | "caloriesBurned" | "rating";
+        const key =
+            sortBy === "Calories"
+                ? "caloriesBurned"
+                : sortBy.toLowerCase() as "duration" | "rating";
         return [...base].sort((a: IWorkout, b: IWorkout) =>
             key === "duration" ? num(a[key]) - num(b[key]) : num(b[key]) - num(a[key])
         );

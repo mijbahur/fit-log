@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import Library from '../components/Library';
-import Hero from '../components/Hero';
+import Library from "../components/Library";
+import Hero from "../components/Hero";
 
 const HomePage = () => {
   return (
