@@ -1,5 +1,7 @@
+import AddToTodaysPlanButton from "@/src/components/workoutDetails/AddToTodaysPlanButton";
+import SaveWorkoutButton from "@/src/components/workoutDetails/SaveWorkoutButton";
 import { IWorkout } from "@/src/types/workout.type";
-import { ArrowLeft, Bookmark, Pill, Plus } from "lucide-react";
+import { ArrowLeft} from "lucide-react";
 
 import Link from "next/link";
 import React from "react";
@@ -17,7 +19,22 @@ const getWorkouts = async () => {
 const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
     const { id } = await params;
     const workouts = await getWorkouts();
-    const workout = workouts.find((w: IWorkout) => w.id === parseInt(id));
+    const workout = workouts.find((w: IWorkout) => Number(w.id) === Number(id));
+
+    if (!workout) {
+        return (
+            <section className="container mx-auto max-w-7xl px-4 py-8">
+                <h1 className="text-2xl font-bold">Workout not found</h1>
+
+                <Link
+                    href="/"
+                    className="mt-4 inline-block text-accent"
+                >
+                    Back to library
+                </Link>
+            </section>
+        );
+    }
 
     const specs: [string, string | number][] = [
     ["Equipment", workout.equipment],
@@ -31,7 +48,7 @@ const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
     return (
         <section className="container mx-auto max-w-7xl px-4 py-8 sm:px-6">
             <Link
-                href="/../"
+                href="/"
                 className="mb-6 inline-flex items-center gap-2 text-sm text-muted hover:text-accent"
             >
                 <ArrowLeft size={16} /> Back to library Back to library
@@ -99,18 +116,8 @@ const WorkoutDetailPage = async ({ params }: WorkoutDetailPageProps) => {
                     )}
 
                     <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                        <button
-                            className="btn text-[#000] bg-[#C2F800] flex-1 gap-2 border-0 rounded-lg font-bold uppercase hover:bg-black hover:text-white hover:border hover:border-[#C2F800] disabled:opacity-50"
-
-                        >
-                            <Plus size={18} /> Add to today&apos;s plan
-                        </button>
-                        <button
-                            
-                            className="btn flex-1 gap-2 border-line rounded-lg bg-transparent font-bold uppercase text-white hover:border-[#C2F800] disabled:opacity-50"
-                        >
-                            <Bookmark size={18} /> Save workout
-                        </button>
+                        <AddToTodaysPlanButton workout={workout} />
+                        <SaveWorkoutButton />
                     </div>
                 </div>
             </div>

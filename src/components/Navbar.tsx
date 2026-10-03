@@ -7,10 +7,10 @@ const Navbar = () => {
     const links = (
         <>
             <li>
-                <Link href="./../">Workouts</Link>
+                <Link href="/">Workouts</Link>
             </li>
             <li>
-                <Link href="./my-plan">My Plan</Link>
+                <Link href="/my-plan">My Plan</Link>
             </li>
         </>
     );
@@ -51,7 +51,7 @@ const Navbar = () => {
                     <div className="flex items-center">
                         <Image src={logo} alt="Logo" width={24} height={24} />
 
-                        <Link href="./../" className="btn btn-ghost text-xl">
+                        <Link href="/" className="btn btn-ghost text-xl">
                             FITLOG
                         </Link>
                     </div>
@@ -61,10 +61,10 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end gap-2">
                     {/* <a className="btn">Button</a> */}
-                    <Link href="./my-plan">
+                    <Link href="/my-plan">
                         My Plan <span className="ml-1"></span>
                     </Link>
-                    <Link href="./my-plan">
+                    <Link href="/my-plan">
                         Saved <span className="ml-1"></span>
                     </Link>
                 </div>
